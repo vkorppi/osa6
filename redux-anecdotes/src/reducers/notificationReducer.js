@@ -1,16 +1,24 @@
 
   
+ let timeid=0
+
   export const createNotification = (message,time) => {
     
     return async dispatch => { 
 
-      await dispatch({ notification: message,type: 'CREATENOTE'})
+      if(timeid === 0) {
 
-        setTimeout(() => {
+        await dispatch({ notification: message,type: 'CREATENOTE'})
+
+        console.log(timeid)
+        timeid= setTimeout(() => {
           dispatch(removeNotification())
+          timeid=0
         }, time)
+      }
      }
     
+     
     
   }
 
